@@ -22,8 +22,8 @@
   </modules>
 <distributionManagement>
   <repository>
-    <id>releases</id>
-    <url>http://localhost:8082/nexus/content/repositories/releases</url>
+    <id>artifacts</id>
+    <url>http://localhost:8082/nexus/content/repositories/buildartifact/</url>
   </repository>
 </distributionManagement>
     <build>
