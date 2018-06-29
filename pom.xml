@@ -22,7 +22,7 @@
   </modules>
 <distributionManagement>
   <repository>
-    <id>artifacts</id>
+    <id>buildartifact</id>
     <url>http://localhost:8082/nexus/content/repositories/buildartifact/</url>
   </repository>
 </distributionManagement>
