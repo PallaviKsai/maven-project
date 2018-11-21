@@ -4,11 +4,12 @@ pipeline {
     stages {
 
     stage('checkin code') {
+    steps{
        git 'https://github.com/PallaviKsai/maven-project.git'
-        sh '''ssh rig@52.168.175.97 "cd pallavi/;sudo git fetch --all;sudo git reset --hard origin/master"''' 
-
+       sh '''ssh rig@52.168.175.97 "cd pallavi/;sudo git fetch --all;sudo git reset --hard origin/master"'''
+       }
     }
-        stage('Build') {
+      stage('Build') {
             steps {
                 sh 'ssh rig@52.168.175.97 "cd pallavi/maven-project/;mvn clean package"'
 
@@ -22,8 +23,5 @@ pipeline {
             //}
         }
     }
-    
-        
-        
-    }
 
+    }
