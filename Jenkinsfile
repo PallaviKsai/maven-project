@@ -16,17 +16,12 @@ pipeline {
 
                 // sh 'mvn clean package'
             }
-            post {
-                success {
-                   echo ' Now archiving...'
-                   archiveArtifacts artifacts: '**/target/*.war'
-               }
-            }
+         
         }
         stage('Code Quality') {
         
               steps {
-               build job: 'pallu-sonar1'
+              sh '''ssh rig@52.168.175.97 "cd pallavi/maven-project/;sudo su;sonar-scanner 
               }
               
             
