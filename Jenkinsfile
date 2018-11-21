@@ -23,22 +23,16 @@ pipeline {
             }
         }
         stage('Code Quality') {
-          stage('test') {
-           
-            parallel(
+        
               steps {
                build job: 'pallu-sonar1'
               },
               
-              UnitTest: {
-                   sh '''ssh rig@52.168.175.97 "cd pallavi/maven-project/;git fetch --all;git reset --hard origin/master;echo 'Unit test passed'"''' 
-                
-              }
-              
-            )
+            
+          
           }
           
-        }
+        
     }
 }
     
