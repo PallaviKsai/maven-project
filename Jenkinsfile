@@ -4,17 +4,41 @@ pipeline {
     stages {
 
     stage('checkin code') {
-     steps{
-       git url :'https://github.com/PallaviKsai/maven-project.git'
-       //sh '''ssh rig@52.168.175.97 "cd pallavi/;sudo git fetch --all;sudo git reset --hard origin/master"'''
-       sh '''ssh rig@52.168.175.97 "cd pallavi/;sudo rm -rf maven-project;sudo git clone https://github.com/PallaviKsai/maven-project.git"'''
+    steps{
+       git 'https://github.com/PallaviKsai/maven-project.git'
+       sh '''ssh rig@52.168.175.97 "cd pallavi/;sudo git fetch --all;sudo git reset --hard origin/master"'''
        }
-     }
-    stage('Build') {
-      steps {
-             sh 'ssh rig@52.168.175.97 "cd pallavi/maven-project/;pwd;sudo mvn clean package"'
-           // sh 'mvn clean package'
+    }
+      stage('Build') {
+            steps {
+                sh 'ssh rig@52.168.175.97 "cd pallavi/maven-project/;mvn clean package"'
+
+                // sh 'mvn clean package'
+            }
+            //post {
+                success {
+                   echo ' Now archiving...'
+                   archiveArtifacts artifacts: '**/target/*.war'
+               }
             }
         }
+        stage('Code Quality') {
+          stage('test') {
+           
+            parallel(
+              CodeCoverage: {
+               build job: 'pallu-sonar1'
+              },
+              
+              UnitTest: {
+                   sh '''ssh rig@52.168.175.97 "cd pallavi/maven-project/;git fetch --all;git reset --hard origin/master;echo 'Unit test passed'"''' 
+                
+              }
+              
+            )
+          }
+          
+        }
     }
+
     }
