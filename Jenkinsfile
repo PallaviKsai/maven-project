@@ -17,7 +17,7 @@ pipeline {
         }
        stage('Code Quality') { 
               steps {
-              sh '''ssh rig@52.168.175.97 "cd pallavi/maven-project/;sudo su;sonar-scanner 
+              sh '''ssh rig@52.168.175.97 "cd pallavi/maven-project/;sudo su;sonar-scanner"'''
               }
        
           } 
