@@ -26,7 +26,7 @@ pipeline {
           stage('test') {
            
             parallel(
-              CodeCoverage: {
+              steps {
                build job: 'pallu-sonar1'
               },
               
