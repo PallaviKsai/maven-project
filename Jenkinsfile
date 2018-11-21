@@ -26,7 +26,7 @@ pipeline {
         
               steps {
                build job: 'pallu-sonar1'
-              },
+              }
               
             
           
