@@ -11,7 +11,7 @@ pipeline {
            }
       stage('Build') {
             steps {
-                sh 'ssh rig@52.168.175.97 "cd pallavi/maven-project/;mvn clean package"'
+                sh 'ssh rig@52.168.175.97 "cd pallavi/maven-project/;sudo mvn clean package"'
                 // sh 'mvn clean package'
             }
         }
