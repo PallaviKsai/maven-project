@@ -4,24 +4,17 @@ pipeline {
     stages {
 
     stage('checkin code') {
-    steps{
-       git 'https://github.com/PallaviKsai/maven-project.git'
+     steps{
+       //git credentialsId: '46e5a3f3-103d-4b51-bab3-148d1b6fc773', url: 'https://gitlab.com/ARUNMOHANRAJ471/whatsviz.git'
+       git url :'https://github.com/PallaviKsai/maven-project.git'
        sh '''ssh rig@52.168.175.97 "cd pallavi/;sudo git fetch --all;sudo git reset --hard origin/master"'''
        }
-    }
-      stage('Build') {
-            steps {
-                sh 'ssh rig@52.168.175.97 "cd pallavi/maven-project/;mvn clean package"'
-
-                // sh 'mvn clean package'
+     }
+    stage('Build') {
+      steps {
+             sh 'ssh rig@52.168.175.97 "cd pallavi/maven-project/;mvn clean package"'
+           // sh 'mvn clean package'
             }
-            //post {
-                //success {
-                  //  echo ' Now archiving...'
-                //    archiveArtifacts artifacts: '**/target/*.war'
-              //  }
-            //}
         }
     }
-
     }
