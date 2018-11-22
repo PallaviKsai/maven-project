@@ -28,7 +28,7 @@
           }
         stage('Upload artifact') {
            
-            ${env.server}.upload(${env.uploadSpec})
+            env.server.upload(env.uploadSpec)
         }
     
 }
