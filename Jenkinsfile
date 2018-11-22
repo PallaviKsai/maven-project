@@ -1,7 +1,5 @@
  node {
-   
- 
-             def server = Artifactory.server 'Artifact'
+            def server = Artifactory.server 'Artifact';
             def uploadSpec = """{
               "files": [
             {
@@ -26,8 +24,7 @@
               sh '''ssh rig@52.168.175.97 "cd pallavi/maven-project/;sudo /opt/sonarqube/sonar-scanner-3.0.3.778/bin/sonar-scanner"'''
        
           }
-        stage('Upload artifact') {
-           
+        stage('Upload artifact') {    
             env.server.upload(env.uploadSpec)
         }
     
