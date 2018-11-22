@@ -22,17 +22,17 @@ pipeline {
        
           }
         stage("Upload artifact") {
-            steps{
-def server = Artifactory.server 'Artifact'
-            def uploadSpec = """{
-        "files": [
-            {
-                "pattern": "webapp/target/*.war",
-                "target": "maven-local/"
-            }
-            ]
-            }"""
-server.upload(uploadSpec)
+            steps {
+                def server = Artifactory.server 'Artifact'
+                 def uploadSpec = """{
+                            "files": [
+                                    {
+                                    "pattern": "webapp/target/*.war",
+                                    "target": "maven-local/"
+                                    }
+                                    ]
+                                    }"""
+                server.upload(uploadSpec)
             }
         }
     }
