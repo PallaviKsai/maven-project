@@ -20,7 +20,21 @@ pipeline {
               sh '''ssh rig@52.168.175.97 "cd pallavi/maven-project/;sudo /opt/sonarqube/sonar-scanner-3.0.3.778/bin/sonar-scanner"'''
               }
        
-          } 
+          }
+        stage("Upload artifact") {
+            
+            def server = Artifactory.server 'Artifact'
+            def uploadSpec = """{
+  "files": [
+    {
+      "pattern": "webapp/target/*.war",
+      "target": "maven-local/"
+    }
+ ]
+}"""
+server.upload(uploadSpec)
+            
+        }
     }
 }
     
