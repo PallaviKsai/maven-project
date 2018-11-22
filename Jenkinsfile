@@ -34,7 +34,7 @@ pipeline {
         stage('Upload artifact') {
             steps {
            
-            ${server}.upload(${uploadSpec})
+            env.server.upload(env.uploadSpec)
             }
         }
     }
