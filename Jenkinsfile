@@ -1,5 +1,14 @@
 pipeline {
     agent any
+    def server = Artifactory.server 'Artifact'
+            def uploadSpec = """{
+              "files": [
+            {
+                "pattern": "webapp/target/*.war",
+                "target": "maven-local/"
+            }
+            ]
+            }"""
 
     stages {
         stage('checkin code') {
@@ -21,18 +30,9 @@ pipeline {
               }
        
           }
-        stage("Upload artifact") {
+        stage('Upload artifact') {
             steps {
-                def server = Artifactory.server 'Artifact'
-                 def uploadSpec = """{
-                            "files": [
-                                    {
-                                    "pattern": "webapp/target/*.war",
-                                    "target": "maven-local/"
-                                    }
-                                    ]
-                                    }"""
-                server.upload(uploadSpec)
+             server.upload(uploadSpec)
             }
         }
     }
