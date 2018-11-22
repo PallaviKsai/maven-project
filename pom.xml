@@ -21,10 +21,16 @@
     <module>webapp</module>
   </modules>
 <distributionManagement>
-  <repository>
-    <id>buildartifact</id>
-    <url>http://localhost:8082/nexus/content/repositories/buildartifact/</url>
-  </repository>
+    <repository>
+        <id>central</id>
+        <name>3f82982176e7-releases</name>
+        <url>http://52.15.238.157:8081/artifactory/maven-snap-local</url>
+    </repository>
+    <snapshotRepository>
+        <id>snapshots</id>
+        <name>3f82982176e7-snapshots</name>
+        <url>http://52.15.238.157:8081/artifactory/maven-snap-local</url>
+    </snapshotRepository>
 </distributionManagement>
     <build>
     <plugins>
