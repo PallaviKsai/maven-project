@@ -19,6 +19,10 @@
             
              sh 'ssh rig@52.168.175.97 "cd pallavi/maven-project/;curl -H \"X-JFrog-Art-Api:AKCp5btVgVphFs3hmxLtvRXQ5tTLXqqKJYU5smHh2YdsUfo7GGJKFMvLjrM58rARwcobmXkMA \" -T ./webapp/target/*.war \" http://52.15.238.157:8081/artifactory/local-repo/webapp.war \""' 
         }
+  
+      stage("Deploy To TOmcat") {
+     sh 'ssh rig@52.168.175.97 "cd pallavi/maven-project/;cp ./webapp/target/webapp.war /home/rig/apache-tomcat-8.5.35/webapps/"'
+    }
 }
     
     
