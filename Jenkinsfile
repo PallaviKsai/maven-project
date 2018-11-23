@@ -17,7 +17,8 @@
           }
         stage('Upload artifact') {    
             
-                curl -H 'X-JFrog-Art-Api:AKCp5btVgVphFs3hmxLtvRXQ5tTLXqqKJYU5smHh2YdsUfo7GGJKFMvLjrM58rARwcobmXkMA' -T ./webapp/target/*war "http://52.15.238.157:8081/artifactory/local-repo/webapp.war"
+             sh 'ssh rig@52.168.175.97 "cd pallavi/maven-project/;curl -H 'X-JFrog-Art-Api:AKCp5btVgVphFs3hmxLtvRXQ5tTLXqqKJYU5smHh2YdsUfo7GGJKFMvLjrM58rARwcobmXkMA' -T ./webapp/target/*.war "http://52.15.238.157:8081/artifactory/local-repo/webapp.war""' 
         }
-    
 }
+    
+    
