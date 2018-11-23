@@ -1,13 +1,4 @@
  node {
-            def server = Artifactory.server 'Artifact';
-            def uploadSpec = """{
-              "files": [
-            {
-                "pattern": "webapp/target/*.war",
-                "target": "maven-local/"
-            }
-            ]
-            }"""
   
         stage('checkin code') {
             
@@ -25,7 +16,8 @@
        
           }
         stage('Upload artifact') {    
-            env.server.upload(env.uploadSpec)
+            
+                curl -H 'X-JFrog-Art-Api:AKCp5btVgVphFs3hmxLtvRXQ5tTLXqqKJYU5smHh2YdsUfo7GGJKFMvLjrM58rARwcobmXkMA' -T ./webapp/target/*war "http://52.15.238.157:8081/artifactory/local-repo/webapp.war"
         }
     
 }
