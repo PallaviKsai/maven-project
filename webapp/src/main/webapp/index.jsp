@@ -1,5 +1,5 @@
 <html> 
-   <head><title>New Deployment is coming</title></head> 
+   <head><title>Write something new over there</title></head> 
    
    <body>
       <p>Today's date is given here  : <%= (new java.util.Date()).toLocaleString()%></p>
